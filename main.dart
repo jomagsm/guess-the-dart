@@ -3,36 +3,7 @@ import 'dart:io';
 import 'dart:math';
 
 void main() {
-  var hiddenNumber = getRandomNumber(1, 101);
-
-  // userGuess(hiddenNumber);
   compGuess();
-  // var name = stdin.readLineSync();
-  // stdout.write(name);
-  //
-  // void printValue(int value){
-  //     print(value);
-  // }
-  // printValue(123);
-  //
-  //     var number = 0;
-//     int intValue = 42;
-//     double doubleValue = 12.22;
-//     num value = getValueFromServer();
-//     print(number.runtimeType);
-//     print(doubleValue.runtimeType);
-//     print(value.runtimeType);
-//
-//     String str = "Hello world";
-//     int numb = 42;
-//     print("${str.toUpperCase()} - $numb");
-//
-//     print(1 == int.parse('1'));
-//     print(12.22 == double.parse('12.22'));
-//
-// }
-// double getValueFromServer(){
-//     return 12.88;
 }
 
 getRandomNumber(min, max) {
@@ -73,10 +44,20 @@ compGuess() {
   int steps = 0;
   var min = 0;
   var max = 101;
+  var difficultyLevel;
+  stdout.write("Выберите уровень:\n1) Легкий\n"
+                                  "2) Средний \n");
+  int choose = int.parse(stdin.readLineSync()!);
+  if(choose==1){
+    difficultyLevel = 1;}
+  else if(choose==2){
+    difficultyLevel = 2;
+  }
   for (;;) {
     steps += 1;
-    print('$min $max');
-    var number = getRandomNumber(min, max);
+    int number;
+    if (difficultyLevel==1){number = getRandomNumber(min, max);}
+    else{number = getMiddle(min, max);}
     print('Это число $number?');
     var userAnswer = stdin.readLineSync();
     if (userAnswer == 'less') {
@@ -88,4 +69,12 @@ compGuess() {
       break;
     }
   }
+}
+
+getRandom(min,max){
+  return getRandomNumber(min, max);
+}
+
+getMiddle(min,max){
+  return (min+max)~/2;
 }
