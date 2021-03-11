@@ -3,7 +3,20 @@ import 'dart:io';
 import 'dart:math';
 
 void main() {
-  compGuess();
+  startGame();
+}
+
+startGame(){
+  stdout.write("Выберите режим игры:\n"
+               "1)Компьютер угадывает число\n"
+               "2)Пользователь угадывает число\n");
+  int inputUser = int.parse(stdin.readLineSync()!);
+  if(inputUser==1){
+    compGuess();
+  }
+  else if(inputUser==2){
+    userGuess();
+  }
 }
 
 getRandomNumber(min, max) {
@@ -23,9 +36,9 @@ comparisonOfNumber(int hiddenNumber, int inputUserNumber) {
   return answer;
 }
 
-userGuess(hiddenNumber) {
+userGuess() {
+  var hiddenNumber = getRandomNumber(1, 101);
   int steps = 0;
-  print(hiddenNumber);
   for (;;) {
     steps += 1;
     stdout.write("Введите число: ");
