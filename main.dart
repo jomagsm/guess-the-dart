@@ -5,8 +5,7 @@ import 'dart:math';
 void main() {
   startGame();
 }
-
-startGame(){
+void startGame(){
   stdout.write("Выберите режим игры:\n"
                "1)Компьютер угадывает число\n"
                "2)Пользователь угадывает число\n");
@@ -19,12 +18,12 @@ startGame(){
   }
 }
 
-getRandomNumber(min, max) {
+int getRandomNumber(min, max) {
   var rn = new Random();
   return min + rn.nextInt(max - min);
 }
 
-comparisonOfNumber(int hiddenNumber, int inputUserNumber) {
+String comparisonOfNumber(int hiddenNumber, int inputUserNumber) {
   String answer = "";
   if (hiddenNumber == inputUserNumber) {
     answer = "OK";
@@ -36,7 +35,7 @@ comparisonOfNumber(int hiddenNumber, int inputUserNumber) {
   return answer;
 }
 
-userGuess() {
+void userGuess() {
   var hiddenNumber = getRandomNumber(1, 101);
   int steps = 0;
   for (;;) {
@@ -53,7 +52,7 @@ userGuess() {
   }
 }
 
-compGuess() {
+void compGuess() {
   int steps = 0;
   var min = 0;
   var max = 101;
@@ -84,10 +83,10 @@ compGuess() {
   }
 }
 
-getRandom(min,max){
+int getRandom(min,max){
   return getRandomNumber(min, max);
 }
 
-getMiddle(min,max){
+int getMiddle(min,max){
   return (min+max)~/2;
 }
